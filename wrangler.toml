@@ -1,0 +1,9 @@
+# Cloudflare Pages Configuration
+name = "www-vampirism-co"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "output"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "vampirismco-stats"
+database_id = "a62ceb64-4407-46cd-920e-4ebdaa2cdb5d"

@@ -1,0 +1,50 @@
+<article class="card">
+    {{#featuredImage}}
+        {{#if url}}
+            <figure class="card__image">
+                <img
+                    src="{{url}}"
+                    {{#if @config.site.responsiveImages}}
+                        {{responsiveImageAttributes 'featuredImage' srcset.card sizes.card}}
+                    {{/if}}
+                    {{lazyload "lazy"}}
+                    height="{{height}}"
+                    width="{{width}}"
+                    alt="{{alt}}">
+            </figure>
+        {{/if}}
+    {{/featuredImage}}
+
+    <div class="card__content">
+        <h3 class="card__title">
+            <a href="{{url}}">{{title}}</a>
+        </h3>
+
+        {{#checkIf @config.custom.cardsExcerpt '==' 'all'}}
+            <p class="card__entry">
+                {{{ excerpt }}}
+            </p>
+        {{else}}
+            {{#checkIf @config.custom.cardsExcerpt '==' 'blog'}}
+                {{#is "blogindex"}}
+                    <p class="card__entry">
+                        {{{ excerpt }}}
+                    </p>
+                {{/is}}
+            {{/checkIf}}
+        {{/checkIf}}
+
+        {{#if @config.custom.cardsDate}}
+            <div class="card__meta">
+                <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="card__date">
+                    {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                        {{date createdAt @config.custom.formatDate}}
+                    {{else}}
+                        {{date createdAt @config.custom.formatDateCustom}}
+                    {{/checkIf}}
+                </time>
+            </div>
+        {{/if}}
+
+    </div>
+</article>

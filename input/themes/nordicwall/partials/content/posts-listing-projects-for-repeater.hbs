@@ -1,0 +1,54 @@
+<article class="tile{{#if (isHalfTile index layout)}} md:col-span-2{{/if}}{{#if @config.custom.animation}} anim-hidden{{/if}}">
+    {{#if customImage}}
+        <figure class="tile__image{{#if (isHalfImage index layout)}} tile__image--half{{/if}}">
+            <img src="{{customImage}}" alt="{{customImageAlt}}"  
+                {{#if @config.site.responsiveImages}}                           
+                   {{responsiveImageAttributes customImage 'featuredImages' 'img-full'}}  
+                {{/if}}
+                {{imageDimensions customImage}}
+                {{ lazyload "lazy" }}>
+        </figure>
+    {{/if}}
+
+    {{#if @config.custom.tilesContent}}
+        {{#checkIfAny customTitle customDescription customButtonText}}
+            <div class="tile__body">
+                <h3 class="tile__title">
+                    {{customTitle}}
+                </h3>
+
+                {{#if @config.custom.tilesExcerpt}}
+                    <div class="tile__description">
+                       {{{customDescription}}}
+                    </div>
+                {{/if}}
+
+                {{#if @config.custom.tilesButton}}
+                    {{#if customButtonText}}
+                        <div class="tile__link">
+                            {{#checkIf buttonLinkType '==' 'custom'}}
+                                <a class="btn btn--white" href="{{customButtonURL}}">
+                                  {{customButtonText}}
+                                </a>
+                            {{/checkIf}}
+                            {{#checkIf buttonLinkType '==' 'post'}}
+                                {{#getPost customButtonPost}}
+                                    <a href="{{url}}" class="btn btn--white">
+                                        {{../customButtonText}}
+                                    </a>
+                                {{/getPost}}
+                            {{/checkIf}}
+                            {{#checkIf buttonLinkType '==' 'page'}}
+                                {{#getPage customButtonPage}}
+                                    <a href="{{url}}" class="btn btn--white">
+                                        {{../customButtonText}}
+                                    </a>
+                                {{/getPage}}
+                            {{/checkIf}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            </div>
+        {{/checkIfAny}}
+    {{/if}}
+</article>

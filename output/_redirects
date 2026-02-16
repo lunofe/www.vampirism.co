@@ -1,0 +1,16 @@
+# common wordpress pages
+/wiki / 301
+/wiki/rules /rules 301
+/wiki/modpack-licensing /licensing 301
+/install-curseforge / 301
+/appeal-your-ban /request-unban 301
+/staff-applications /join-the-team 301
+/sunsetting-technic-launcher /post/sunsetting-technic-launcher 301
+
+# redirect old file folder
+/files/modpack_menu.php /api/track 301
+/files /media/files
+
+# fun things
+/store https://www.youtube.com/watch?v=dQw4w9WgXcQ 301
+/shop https://www.youtube.com/watch?v=dQw4w9WgXcQ 301

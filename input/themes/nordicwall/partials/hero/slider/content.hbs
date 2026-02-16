@@ -1,0 +1,45 @@
+<div class="hero__slider__slide">
+   <div class="hero__slider__parallax">
+      <div class="hero__slider__parallax__layer">
+         <div class="hero__content {{#checkIf @config.custom.heroTitleSize '==' 'large'}}hero__content--large{{/checkIf}} {{#checkIf @config.custom.heroTitleSize '==' 'small'}}hero__content--small{{/checkIf}}">
+            {{#checkIf @index '==' 0}}
+               <h1>{{title}}</h1>
+            {{else}}
+               <h2 class="h1">{{title}}</h2>
+            {{/checkIf}}     
+
+            {{#if hasCustomExcerpt}}
+               {{{ excerpt }}}
+            {{else}}
+               <p>{{{ excerpt }}}</p>
+            {{/if}}   
+   
+            {{#if @config.custom.heroButton}}
+               <div class="hero__link">
+                  <a href="{{url}}" class="btn btn--white">{{ translate 'global.readMore' }}</a>
+               </div>
+            {{/if}}
+         </div>
+
+         {{#featuredImage}}
+            {{#if url}}                                            
+               <figure class="hero__image">                
+                  <img
+                     src="{{url}}"
+                     {{#if @config.site.responsiveImages}}                           
+                        {{responsiveImageAttributes 'featuredImage' srcset.img-full sizes.img-full}}
+                     {{/if}}
+                     {{#checkIf @index '==' 0}}
+                        {{ lazyload "eager" }}
+                      {{else}}
+                        {{ lazyload "lazy" }}
+                      {{/checkIf}}
+                     height="{{height}}"
+                     width="{{width}}"
+                     alt="{{alt}}">
+               </figure>                       
+            {{/if}}
+         {{/featuredImage}}
+      </div>
+   </div>
+</div>

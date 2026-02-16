@@ -1,0 +1,295 @@
+    <footer class="section footer{{#if @config.custom.animation}} anim-hidden{{/if}}" id="footer">
+        <div class="wrapper">
+            <div class="footer__top grid gap-8 lg:gap-6 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="footer__item {{#checkIfAll @config.custom.contactUs @config.custom.footerCTA}}sm:col-span-2 {{else}} sm:col-span-2 lg:col-span-3 {{/checkIfAll}} ">
+                    <a class="footer__logo" href="{{@website.url}}">
+                        {{#if @website.logo}}
+                            <img src="{{@website.logo}}" alt="{{@website.name}}" width="{{@website.logoSize.width}}" height="{{@website.logoSize.height}}">
+                        {{else}}
+                            {{@website.name}}
+                        {{/if}}
+                    </a>
+                </div>
+
+                {{#if @config.custom.contactUs}}
+                    <div class="footer__item">
+                        <h3 class="footer__heading">{{@config.custom.contactUsHeading}}</h3>
+                        {{{@config.custom.contactUsText}}}
+                    </div>
+                {{/if}}
+
+                {{#if @config.custom.footerCTA}}
+                    <div class="footer__item">
+                        <h3 class="footer__heading">{{@config.custom.footerCTAHeading}}</h3>
+                        {{{@config.custom.footerCTAText}}}
+                    </div>
+                {{/if}}
+            </div>
+
+            {{#checkIfAny @config.custom.copyright menus.footerMenu @config.custom.socialButtons}}
+                <div class="footer__bottom grid gap-8 md:grid-cols-2">
+                    {{#checkIfAny menus.footerMenu @config.custom.socialButtons}}
+                        <div class="footer__nav">
+                            {{#if menus.footerMenu}}
+                                <div class="footer__links">
+                                    {{> components/simple-menu menus.footerMenu}}
+                                </div>
+                            {{/if}}
+
+                            {{#if @config.custom.socialButtons}}
+                                <div class="footer__social">
+                                   {{> components/follow-buttons}}
+                                </div>
+                            {{/if}}
+                        </div>
+                    {{/checkIfAny}}
+
+                    {{#if @config.custom.copyright}}
+                        <div class="footer__copyright">
+                            {{{@config.custom.copyrightText}}}
+                        </div>
+                    {{/if}}
+                </div>
+            {{/checkIfAny}}
+        </div>
+    </footer>
+    {{#if @config.custom.backToTopButton}}
+        <button id="backToTop" class="btn footer__bttop" aria-label="{{ translate 'partials.footer.backToTop' }}" title="{{ translate 'partials.footer.backToTop' }}">
+            <svg width="20" height="20">
+                <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-top"/>
+            </svg>
+        </button>
+    {{/if}}
+</div>
+{{#if @config.custom.searchFeature}}
+    <div class="search-overlay" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="search-overlay__wrapper">
+            <h3>{{ translate 'search.search' }}</h3>
+            {{{@customSearchInput}}}
+        </div>
+    </div>
+{{/if}}
+
+<script defer src="{{js "scripts.min.js"}}"></script>
+<script>
+    window.publiiThemeMenuConfig = {
+        mobileMenuMode: '{{@config.custom.mobilemenu}}',
+        animationSpeed: 300,
+        submenuWidth: {{#checkIf @config.custom.submenu '==' "auto" }}'auto'{{else}}{{@config.custom.submenuWidth}}{{/checkIf}},
+        doubleClickTime: 500,
+        mobileMenuExpandableSubmenus: {{@config.custom.mobilemenuExpandableSubmenus}},
+        relatedContainerForOverlayMenuSelector: '.header'
+    }
+</script>
+
+{{#if @config.custom.showHeroSliderAndInsightsSection}}
+   {{#is "index"}}
+        <script>
+            // Define InsightsOptions for Hero section slider
+            window.HeroOptions = {
+                dragFree: {{@config.custom.heroSliderDragFree}},
+                loop: {{@config.custom.heroSliderLoop}},
+                parallax: {{@config.custom.heroSliderParallax}},
+                fade: {{@config.custom.heroSliderFade}},
+                progressBar: false,
+                autoplay: {
+                    enabled: {{@config.custom.heroSliderAutoplay}},
+                    delay: {{@config.custom.heroSliderAutoplayInterval}}, 
+                    stopOnInteraction: {{@config.custom.heroSliderAutoplayStopOnInteraction}},
+                    stopOnMouseEnter: {{@config.custom.heroSliderAutoplayStopOnMouseEnter}}
+                },
+                parallaxFactor: {{@config.custom.heroSliderParallaxFactor}},
+                duration: {{@config.custom.heroSliderDuration}},
+                fadeDuration: {{@config.custom.heroSliderFadeDuration}},
+                useClassNames: {{@config.custom.heroSliderUseClassNames}},
+                wheelGestures: {
+                    enabled: {{@config.custom.heroSliderWheelGestures}},       
+                    forceWheelAxis: '{{@config.custom.heroSliderWheelForceAxis}}'     
+                }
+            };
+            // Define InsightsOptions for the Insights section slider
+            window.InsightsOptions = {
+                dragFree: {{@config.custom.insightsSliderDragFree}},
+                loop: {{@config.custom.insightsSliderLoop}},
+                parallax: false,
+                arrows: {{@config.custom.insightsSliderNavigation}},
+                progressBar: {{@config.custom.insightsSliderProgressBar}},
+                fade: false,
+                autoplay: {
+                    enabled: {{@config.custom.insightsSliderAutoplay}},
+                    delay: {{@config.custom.insightsSliderAutoplayInterval}},
+                    stopOnInteraction: {{@config.custom.insightsSliderAutoplayStopOnInteraction}},
+                    stopOnMouseEnter: {{@config.custom.insightsSliderAutoplayStopOnMouseEnter}}
+                },
+                duration: {{@config.custom.insightsSliderDuration}},
+                useClassNames: {{@config.custom.insightsSliderUseClassNames}},
+                wheelGestures: {
+                    enabled: {{@config.custom.insightsSliderWheelGestures}},
+                    forceWheelAxis: '{{@config.custom.insightsSliderWheelForceAxis}}'  
+                }
+            };
+            // Disable parallax effect if fade is enabled
+            if (window.HeroOptions.fade) {
+                window.HeroOptions.parallax = false;
+            }
+            if (window.InsightsOptions.fade) {
+                window.InsightsOptions.parallax = false;
+            }
+            // Initialize carousels when the DOM is fully loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                initEmblaCarousel('.hero__slider', window.HeroOptions);
+                initEmblaCarousel('.insights', window.InsightsOptions);
+            });
+        </script>
+        <script defer src="{{js "embla-carousel.umd.js"}}"></script>
+        {{#if @config.custom.insightsSliderNavigation}}
+           <script defer src="{{js "EmblaCarouselArrowButtons.min.js"}}"></script>
+        {{/if}}
+        {{#checkIfAny @config.custom.heroSliderAutoplay @config.custom.insightsSliderAutoplay}}
+           <script defer src="{{js "EmblaCarouselAutoplay.min.js"}}"></script>
+        {{/checkIfAny}}
+        {{#checkIfAny @config.custom.heroSliderUseClassNames @config.custom.insightsSliderUseClassNames}}
+           <script defer src="{{js "EmblaCarouselClassNames.min.js"}}"></script>
+        {{/checkIfAny}}
+        {{#if @config.custom.heroSliderDotNavigation}}
+           <script defer src="{{js "EmblaCarouselDotButton.min.js"}}"></script>
+        {{/if}}
+        {{#if @config.custom.heroSliderFade}}
+           <script defer src="{{js "EmblaCarouselFade.min.js"}}"></script>
+        {{/if}}
+        {{#if @config.custom.heroSliderParallax}}
+           <script defer src="{{js "EmblaCarouselParallax.min.js"}}"></script>
+        {{/if}}
+        {{#if @config.custom.insightsSliderProgressBar}}
+           <script defer src="{{js "EmblaCarouselProgressBar.min.js"}}"></script>
+        {{/if}}
+         {{#checkIfAny @config.custom.heroSliderWheelGestures @config.custom.heroSliderWheelGestures}}
+           <script defer src="{{js "EmblaWheelGestures.min.js"}}"></script>
+        {{/checkIfAny}} 
+        <script defer src="{{js "embla-initialization.min.js"}}"></script>
+   {{/is}}
+{{/if}}
+
+{{#if @config.site.mediaLazyLoad}}
+    <script>        
+        var images = document.querySelectorAll('img[loading]');
+        for (var i = 0; i < images.length; i++) {
+            if (images[i].complete) {
+                images[i].classList.add('is-loaded');
+            } else {
+                images[i].addEventListener('load', function () {
+                    this.classList.add('is-loaded');
+                }, false);
+            }
+        }
+    </script>
+{{/if}}
+
+{{#if @config.custom.animation}}
+    <script defer src="{{js "motion.min.js"}}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        if (!window.Motion) return;
+
+        const { animate, inView, stagger, press } = window.Motion;
+
+            // common animation configuration
+            const commonConfig = {
+                duration: 0.6,
+                ease: "easeOut"
+            };
+
+            // helper function to remove the "anim-hidden" class
+            const removeAnimHidden = element => element.classList.remove("anim-hidden");
+
+            // helper to animate immediately on page load
+            const animateNow = (selector, props, options = {}) => {
+                document.querySelectorAll(selector).forEach(element => {
+                    removeAnimHidden(element);
+                    animate(element, props, { ...commonConfig, ...options });
+                });
+            };
+
+            // animate these immediately on page load
+            animateNow(".site-branding", { y: [-100, 0], opacity: [0, 1] });
+            animateNow(".header", { y: [25, 0], opacity: [0, 1] });
+            animateNow(".hero", { y: [50, 0], opacity: [0, 1], scale: [0.95, 1] });
+            animateNow(".content__featured-image", { y: [60, 0], opacity: [0, 1], scale: [0.95, 1] });
+            animateNow(".content__header", { y: [20, 0], opacity: [0, 1] });
+            animateNow(".content__meta", { opacity: [0, 1] }, { delay: 0.15 });
+
+            // Animate headers, features and insights with the same entrance animation
+            inView(".section__header, .features__content, .metrics__content, .insights__viewport, .content__body, .related-posts .section__content, .comments, .footer", element => {
+                removeAnimHidden(element);
+                animate(element, { y: [60, 0], opacity: [0, 1] }, commonConfig);
+            }, { margin: "-5% 0px" });
+
+        // Tile-like animation for multiple elements with entrance and exit
+            inView(".tile, .feature-box, .post__image--full, .post__image--wide, .gallery-wrapper--wide, .gallery-wrapper--full", element => {
+                removeAnimHidden(element);
+                animate(element, { 
+                    y: [60, 0], 
+                    opacity: [0, 1], 
+                    scale: [0.95, 1] 
+                }, commonConfig);
+
+                return () => animate(element, { 
+                    opacity: 0, 
+                    scale: 0.8 
+                }, { duration: 0.6, ease: "easeIn" });
+            }, { margin: "-5% 0px" });
+
+            // Animate metric numbers with a count-up effect
+            inView(".metrics__number", element => {
+                removeAnimHidden(element);
+                const originalText = element.textContent.trim();
+                const finalValue = parseInt(originalText.replace(/\D/g, ""), 10);
+                if (isNaN(finalValue)) return;
+                animate(0, finalValue, {
+                    duration: 1.5,
+                    ease: "easeOut",
+                    onUpdate: latest => {
+                        element.textContent = Math.round(latest) + originalText.replace(/\d/g, "");
+                    }
+                });
+                animate(element, { opacity: [0, 1] }, { duration: 1.5, ease: "easeOut" });
+            }, { margin: "0px", amount: 0.5 });
+
+            // Animate FAQ list items with staggered effect
+            inView(".faq__list, .page--tags__list", element => {
+                let items = element.querySelectorAll(".faq__item");
+                if (element.classList.contains("page--tags__list")) {
+                    items = element.querySelectorAll("li");
+                }
+                items.forEach(item => item.classList.remove("anim-hidden"));
+                animate(
+                    items,
+                    { opacity: [0, 1], x: [20, 0] },
+                    {
+                        duration: 0.6,
+                        delay: stagger(0.2),
+                        easing: "ease-out"
+                    }
+                );
+            }, {
+                margin: "0px"
+            });
+
+            // Press animation for buttons
+            press(".btn, button, .header__btn", element => {
+                removeAnimHidden(element);
+                animate(element, { scale: 0.9 }, { type: "spring", stiffness: 1000 });
+                return () => animate(element, { scale: 1 }, { type: "spring", stiffness: 500 });
+            });
+        });
+    </script>
+{{/if}}
+
+{{#if @renderer.previewMode}}
+<script defer src="{{js "svg-map.js"}}"></script>
+<script defer src="{{js "svg-fix.js"}}"></script>
+{{/if}}
+{{{@footerCustomCode}}}
+{{{ publiiFooter }}}
+</body>
+</html>

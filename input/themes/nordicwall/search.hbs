@@ -1,0 +1,15 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container page page--error">
+   <section class="content">
+      <header class="content__header">
+         <h1 class="content__title">
+            {{ translate 'search.title' }}
+         </h1>
+      </header>
+      <div class="content__body content__entry">
+        {{{@customSearchContent}}}
+      </div>
+   </section>
+</main>
+{{> layout/footer}}

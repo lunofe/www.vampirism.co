@@ -1,0 +1,119 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container content-container--right page">
+   {{#page}}
+      <article class="content">
+         <header class="content__header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+            <h1 class="content__title">
+               {{title}}
+            </h1>
+         </header>
+
+         {{#checkIfAny @config.page.displayTags @config.page.displayDate}}
+            <div class="content__meta">
+               {{#if @config.page.displayTags}}
+                  <div class="content__tags">
+                     {{#if tags}}
+                     {{#each tags}}<a href="{{url}}">{{name}}</a>{{/each}}
+                     {{/if}}
+                  </div>
+               {{/if}}
+               {{#if @config.page.displayDate}}
+                  <div class="content__info">
+                     {{ translate 'post.availableSince' }} <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="content__date">
+                        {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                           {{date createdAt @config.custom.formatDate}}
+                        {{else}}
+                           {{date createdAt @config.custom.formatDateCustom}}
+                        {{/checkIf}}
+                     </time>
+
+                     {{#if @config.page.displayAuthor}}
+                        {{#author}}
+                           {{ translate 'post.separator' }} <a href="{{url}}" class="content__author">{{name}} </a>
+                        {{/author}}
+                     {{/if}}
+                  </div>
+               {{/if}}
+            </div>
+         {{/checkIfAny}}
+
+         {{#featuredImage}}
+            {{#if url}}
+               <figure class="content__featured-image">
+                  <img
+                     src="{{url}}"
+                     {{#if @config.site.responsiveImages}}                           
+                        {{responsiveImageAttributes 'featuredImage' srcset.img-full sizes.img-full}}
+                     {{/if}}
+                     {{ lazyload "eager" }}
+                     height="{{height}}"
+                     width="{{width}}"
+                     alt="{{alt}}">
+                  {{#checkIfAny caption credits}}
+                     <figcaption>
+                        {{caption}}
+                        {{credits}}
+                     </figcaption>                      
+                  {{/checkIfAny}}                      
+               </figure>
+            {{/if}}
+         {{/featuredImage}}   
+
+         <div class="content__body content__body--aligned content__entry">
+            {{{text}}}            
+         </div>
+
+         {{#checkIfAny @config.page.displayLastUpdatedDate @config.page.displayShareButtons}}
+            <footer class="content__footer">
+                  {{#if @config.page.displayLastUpdatedDate}}
+                     {{#if modifiedAt}}
+                        <div class="content__updated">
+                           {{ translate 'post.specsUpdated' }}
+                           {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                              {{date modifiedAt @config.custom.formatDate}}
+                           {{else}}
+                              {{date modifiedAt @config.custom.formatDateCustom}}
+                           {{/checkIf}}
+                        </div>
+                     {{/if}}
+                  {{/if}}
+
+                  {{#if @config.page.displayShareButtons}}
+                     <div class="content__share"> 
+                        <strong>{{ translate 'post.shareOn' }}</strong>
+                        {{#checkIfAll @plugins.socialSharing @plugins.socialSharing.state}}
+                           {{{@customSocialSharing}}}
+                        {{else}}
+                           {{> components/share-buttons}}
+                        {{/checkIfAll}}   
+                     </div>       
+                  {{/if}}
+            </footer>
+         {{/checkIfAny}}
+      </article>
+
+      {{#checkIfAny @config.page.displayChildPages @customHTML.afterPage}}
+         <div class="content__narrow">
+            {{#if @config.page.displayChildPages}}
+               {{#if subpages}}
+                  <div class="subpages">
+                     <h2 class="h6 subpages__title">{{ translate 'page.childPages' }}</h2>
+                     <ul class="subpages__list">
+                        {{> components/subpages-list}}
+                     </ul>
+                  </div>
+               {{/if}}
+            {{/if}}
+
+            {{#if @customHTML.afterPage}}
+               <div class="section banner banner--after-content">
+                  {{{@customHTML.afterPage}}}
+               </div>
+            {{/if}}
+         </div>
+      {{/checkIfAny}}
+
+   {{/page}}
+</main>
+{{> layout/footer}}

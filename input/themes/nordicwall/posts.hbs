@@ -1,0 +1,32 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container">
+   <section class="content">
+      <header class="content__header">
+         <h1 class="content__title">
+            {{ translate 'postPrefix.title' }} 
+         </h1>
+         <p>
+            {{ translate "postPrefix.description" }}
+         </p>
+      </header>
+
+      <div class="content__body content__body--full">
+         <div class="grid grid gap-6 gap-y-10 md:gap-y-16 sm:grid-cols-2
+
+            {{#checkIf @config.custom.blogIndexGridColumns '==' "3" }}
+               lg:grid-cols-3
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.blogIndexGridColumns '==' "4" }}
+              lg:grid-cols-3  xl:grid-cols-4
+            {{/checkIf}}">
+            {{#each posts}}
+               {{> content/posts-listing}}
+            {{/each}}
+         </div>
+         {{> layout/pagination}}
+      </div>
+   </section>
+</main>
+{{> layout/footer}}

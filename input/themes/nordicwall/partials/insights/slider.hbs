@@ -1,0 +1,38 @@
+<div class="section__content">
+   <div class="insights__viewport{{#if @config.custom.animation}} anim-hidden{{/if}}">
+      <div id="insights-slider" class="insights__container {{#if @config.custom.insightsSliderLoop}} insights__container--loop{{/if}} with--asymmetrical-cards">
+         {{#checkIf @config.custom.insightsSource '==' "latestposts" }}
+            {{#each posts}}
+               {{> insights/content}}
+            {{/each}}
+         {{/checkIf}}
+
+         {{#checkIf @config.custom.insightsSource '==' "tags" }}
+            {{#getPostsByTags (concatenate "count=" @config.custom.insightsTagsAmount "&tag_as=id" "&tags=" @config.custom.insightsTagsIndicator "&excluded=" @config.custom.insightsTagsExcluded "&offset="  "&orderby=modifiedAt" "&ordering=" @config.custom.insightsTagsOrdering)}}
+               {{> insights/content}}
+            {{/getPostsByTags}}
+         {{/checkIf}}
+
+         {{#checkIf @config.custom.insightsSource '==' "posts" }}
+            {{#getPosts (concatenate @config.custom.insightsPosts) "" ""}}
+               {{> insights/content}}
+            {{/getPosts}}
+         {{/checkIf}}
+
+         {{#checkIf @config.custom.insightsSource '==' "pages" }}
+            {{#getPages (concatenate @config.custom.insightsPages) "" ""}}
+               {{> insights/content}}
+            {{/getPages}}
+         {{/checkIf}}
+      </div>
+   </div>
+
+   {{#if @config.custom.insightsSliderProgressBar}}
+      <div class="insights__controls" aria-hidden="true">
+            <div class="insights__progress">
+               <div class="insights__progress-bar"></div>
+            </div>
+      </div> 
+   {{/if}} 
+</div>
+

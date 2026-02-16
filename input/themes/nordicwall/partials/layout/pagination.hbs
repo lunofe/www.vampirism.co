@@ -1,0 +1,77 @@
+{{#if @pagination}}
+   <nav class="pagination {{@website.postsOrdering}}">
+      {{#checkIf @website.postsOrdering '==' "desc"}}
+
+         {{!-- Prev button (newer posts in desc mode) --}}
+         {{#if @pagination.nextPage}}
+            <a href="{{@pagination.nextPageUrl}}" class="btn pagination__item"
+               aria-label="{{ translate 'partials.pagination.prev' }}"
+               title="{{ translate 'partials.pagination.prev' }}">
+               <svg width="18" height="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-prev"/>
+               </svg> 
+            </a>
+         {{else}}
+            <span class="btn pagination__item is-disabled" aria-hidden="true">
+               <svg width="18" height="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-prev"/>
+               </svg>
+            </span>
+         {{/if}}
+
+         {{!-- Next button (older posts in desc mode) --}}
+         {{#if @pagination.previousPage}}
+            <a href="{{@pagination.previousPageUrl}}" class="btn pagination__item"
+               aria-label="{{ translate 'partials.pagination.next' }}"
+               title="{{ translate 'partials.pagination.next' }}">
+               <svg width="18" height="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-next"/>
+               </svg>
+            </a>
+         {{else}}
+            <span class="btn pagination__item is-disabled" aria-hidden="true">
+               <svg width="18" height="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-next"/>
+               </svg>
+            </span>
+         {{/if}}
+
+      {{else}}
+
+         {{!-- Prev button (older posts in asc mode) --}}
+         {{#if @pagination.previousPage}}
+            <a href="{{@pagination.previousPageUrl}}" class="btn pagination__item"
+               aria-label="{{ translate 'partials.pagination.prev' }}"
+               title="{{ translate 'partials.pagination.prev' }}">
+               <svg width="18" height="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-prev"/>
+               </svg>
+            </a>
+         {{else}}
+            <span class="btn pagination__item is-disabled" aria-hidden="true">
+               <svg width="18" height="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-prev"/>
+               </svg>
+            </span>
+         {{/if}}
+
+         {{!-- Next button (newer posts in asc mode) --}}
+         {{#if @pagination.nextPage}}
+            <a href="{{@pagination.nextPageUrl}}" class="btn pagination__item"
+               aria-label="{{ translate 'partials.pagination.next' }}"
+               title="{{ translate 'partials.pagination.next' }}">
+               <svg width="18" height="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-next"/>
+               </svg>
+            </a>
+         {{else}}
+            <span class="btn pagination__item is-disabled" aria-hidden="true">
+               <svg width="18" height="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#arrow-next"/>
+               </svg>
+            </span>
+         {{/if}}
+
+      {{/checkIf}}
+   </nav>
+{{/if}}

@@ -1,0 +1,73 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container content-container--right page page--author">
+   {{#author}}
+      <section class="content">
+         <header class="content__header">
+            {{#if authorViewConfig.displayAvatar}} 
+               <div class="content__avatar">            
+                  {{#if avatar}}
+                     <img 
+                        src="{{avatarImage.url}}" 
+                        {{ lazyload "eager" }}
+                        height="{{avatarImage.height}}"
+                        width="{{avatarImage.width}}" 
+                        alt="{{avatarImage.alt}}">
+                  {{/if}}
+               </div>  
+            {{/if}}
+
+            <div>
+               <h1 class="content__title">
+                  {{name}}
+               </h1>
+
+               {{#if authorViewConfig.displayDescription}} 
+                  {{#if description}}
+                     <div>{{{description}}}</div>
+                  {{/if}}  
+               {{/if}}
+            </div>
+         </header>
+
+         {{#checkIfAny authorViewConfig.displayWebsite authorViewConfig.displayPostCounter}}
+            <div class="content__meta">
+               {{#if authorViewConfig.displayWebsite}}  
+                  {{#if website}}
+                     <div class="content__meta-link">
+                        <a href="{{website}}" target="_blank" rel="nofollow noreferrer noopener" class="underline">{{ translate "author.visitWebsite"}}</a>
+                     </div>
+                  {{/if}}
+               {{/if}}
+
+               {{#if authorViewConfig.displayPostCounter}}
+                  <div class="content__info content__info--sticky">
+                     {{ translate "author.articlesBy" postsNumber name}}
+                  </div>
+               {{/if}}
+            </div>
+         {{/checkIfAny}}
+
+         {{#if authorViewConfig.displayPostList}} 
+            <div class="content__body content__body--aligned content__body--decor">
+               <div class="grid grid gap-6 gap-y-12 md:gap-y-16 
+                  {{#checkIf @config.custom.authorGridLayout '==' "1" }}
+                     sm:grid-cols-1
+                  {{/checkIf}}
+
+                  {{#checkIf @config.custom.authorGridLayout '==' "2" }}
+                     sm:grid-cols-2
+                  {{/checkIf}} with--asymmetrical-cards">
+                  
+                  {{#each ../posts}}
+                     {{> content/posts-listing}}
+                  {{/each}}
+               </div>
+
+               {{> layout/pagination}}
+            </div>
+         {{/if}} 
+      </section>
+   {{/author}}
+</main>
+{{> layout/footer}}

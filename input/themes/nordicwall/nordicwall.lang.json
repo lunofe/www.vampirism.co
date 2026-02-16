@@ -1,0 +1,95 @@
+{
+    "partials": {
+
+        "menu": {
+            "label": "Menu"
+        },
+        
+        "pagination": {
+            "prev": "Previous page",
+            "next": "Next page"
+        },
+        
+        "shareButtons": {
+            "shareWithFacebook": "Facebook",
+            "shareWithTwitter": "Twitter",
+            "shareWithPinterest": "Pinterest",
+            "shareWithMix": "Mix",
+            "shareWithLinkedIn": "LinkedIn",
+            "shareWithBuffer": "Buffer",
+            "shareWithWhatsApp": "WhatsApp"
+        },
+
+        "insights": {
+            "prev": "Previous slide",
+            "next": "Next slide"
+        },
+        
+        "footer": {
+            "followFacebook": "Facebook",
+            "followX": "X",
+            "followInstagram": "Instagram",
+            "followLinkedIn": "LinkedIn",
+            "followVimeo": "Vimeo",
+            "followPinterest": "Pinterest",
+            "followYoutube": "Youtube",
+            "backToTop": "Back to top"
+        }
+    },
+
+   "global": {
+        "readMore": "Unlock the Power"
+        
+    },
+    
+    "post": {
+        "by": "by",
+        "separator": "·",
+        "relatedPosts": "Explore more",
+        "lastUpdatedDate": "Updated on",
+        "specsUpdated": "Specs updated",
+        "availableSince": "Available since",
+        "comments": "Comments",
+        "shareOn": "Share on:"
+    },
+
+   
+    "postPrefix": {
+        "title": "Latest Updates & Insights",
+        "description": "Discover our latest blog posts, covering a variety of topics designed to inform, inspire, and engage. From expert insights to trending news, dive into content crafted to keep you updated and ahead of the curve."
+    },
+
+    "page": {
+        "childPages": "Child pages:"
+    },
+    
+    "tags": {
+        "tagsPageTitle": "Tags",
+        "description": "Collection of all %s tags",
+        "featuringPosts": "Featuring %s posts"
+    },
+
+    "tag": {
+        "articlesTagged": "%s articles tagged as %s",
+        "browseAllTags": "Browse all tags"
+    },
+
+    "author": {
+        "articlesBy": "%s articles by %s",
+        "visitWebsite": "Visit website"
+    },
+
+    "error": {
+        "404": "404",
+        "message": "The page you were looking for appears to have been moved, deleted or does not exist. You could go back to where you were or head straight to our home page.",
+        "button": "Go home"
+    },
+    
+    "search": {
+        "placeholder": "search...",
+        "search": "Search",
+        "close": "Close",
+        "title": "Search",
+        "submit": "Submit"
+    }
+}

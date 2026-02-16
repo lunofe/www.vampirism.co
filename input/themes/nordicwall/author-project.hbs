@@ -1,0 +1,78 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container page page--author">
+   {{#author}}
+      <section class="content">
+         <header class="content__header">
+            {{#if authorViewConfig.displayAvatar}} 
+               <div class="content__avatar">            
+                  {{#if avatar}}
+                     <img 
+                        src="{{avatarImage.url}}" 
+                        {{ lazyload "eager" }}
+                        height="{{avatarImage.height}}"
+                        width="{{avatarImage.width}}" 
+                        alt="{{avatarImage.alt}}">
+                  {{/if}}
+               </div>  
+            {{/if}}
+
+            <div>
+               <h1 class="content__title">
+                  {{name}}
+               </h1>
+
+               {{#if authorViewConfig.displayDescription}} 
+                  {{#if description}}
+                     <div>{{{description}}}</div>
+                  {{/if}}  
+               {{/if}}
+            </div>
+         </header>
+
+         {{#checkIfAny authorViewConfig.displayWebsite authorViewConfig.displayPostCounter}}
+            <div class="content__meta">
+               {{#if authorViewConfig.displayWebsite}}  
+                  {{#if website}}
+                     <div class="content__meta-link">
+                        <a href="{{website}}" target="_blank" rel="nofollow noreferrer noopener" class="underline">{{ translate "author.visitWebsite"}}</a>
+                     </div>
+                  {{/if}}
+               {{/if}}
+
+               {{#if authorViewConfig.displayPostCounter}}
+                  <div class="content__info">
+                     {{ translate "author.articlesBy" postsNumber name}}
+                  </div>
+               {{/if}}
+            </div>
+         {{/checkIfAny}}
+
+         {{#if authorViewConfig.displayPostList}} 
+            <div class="content__body content__body--full">
+              <div class="grid grid gap-6 
+                  {{#checkIf @config.custom.authorGridLayoutProject '==' "default"}} 
+                     md:grid-cols-2
+                  {{/checkIf}} 
+                  {{#checkIf @config.custom.authorGridLayoutProject '==' "reverse" }} 
+                     md:grid-cols-2
+                  {{/checkIf}} 
+                  {{#checkIf @config.custom.authorGridLayoutProject '==' "full" }} 
+                     md:grid-cols-1
+                  {{/checkIf}} 
+                  {{#checkIf @config.custom.authorGridLayoutProject '==' "all-half" }} 
+                     md:grid-cols-2
+                  {{/checkIf}}">
+                  
+                  {{#each ../posts}}
+                     {{> content/posts-listing-project layout=@config.custom.authorGridLayoutProject}}
+                  {{/each}}
+               </div>
+
+               {{> layout/pagination}}
+            </div>
+         {{/if}} 
+      </section>
+   {{/author}}
+</main>
+{{> layout/footer}}

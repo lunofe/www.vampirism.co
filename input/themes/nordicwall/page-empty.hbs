@@ -1,0 +1,50 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container page">
+   {{#page}}
+      <article class="content">
+         <header class="content__header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+            <h1 class="content__title">
+               {{title}}
+            </h1>
+         </header>
+
+         {{#featuredImage}}
+            {{#if url}}
+               <figure class="content__featured-image">
+                  <img
+                     src="{{url}}"
+                     {{#if @config.site.responsiveImages}}                           
+                        {{responsiveImageAttributes 'featuredImage' srcset.img-full sizes.img-full}}
+                     {{/if}}
+                     {{ lazyload "eager" }}
+                     height="{{height}}"
+                     width="{{width}}"
+                     alt="{{alt}}">
+                  {{#checkIfAny caption credits}}
+                     <figcaption>
+                        {{caption}}
+                        {{credits}}
+                     </figcaption>                      
+                  {{/checkIfAny}}                      
+               </figure>
+            {{/if}}
+         {{/featuredImage}}   
+
+         <div class="content__body content__entry">
+            {{{text}}}            
+         </div>
+
+      </article>
+
+      {{#if @customHTML.afterPage}}         
+         <div class="content-footer">
+            <div class="section banner banner--after-content">
+               {{{@customHTML.afterPage}}}
+            </div>
+         </div>
+      {{/if}}
+
+   {{/page}}
+</main>
+{{> layout/footer}}

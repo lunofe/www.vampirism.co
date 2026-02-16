@@ -1,0 +1,13 @@
+{{#each subpages}}
+   {{#getPage @this}}
+      <li>
+         <a href="{{url}}" class="invert">{{title}}</a>
+         {{#if subpages}}
+            <ul>
+               {{> components/subpages-list}}
+            </ul>
+         {{/if}}
+      </li>
+   {{/getPage}}
+{{/each}}
+

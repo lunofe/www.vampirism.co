@@ -1,0 +1,49 @@
+<div class="hero {{#if @config.custom.animation}} anim-hidden{{/if}}">
+   <div class="hero__slider">
+      <div class="hero__slider__viewport">
+         <div class="hero__slider__container">
+            {{#checkIf @config.custom.heroSource '==' "latestposts" }}
+               {{#each posts}}
+                 {{> hero/slider/content}}
+               {{/each}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.heroSource '==' "featured" }}
+               {{#featuredPosts}}
+                  {{> hero/slider/content}}
+               {{/featuredPosts}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.heroSource '==' "tags" }}
+               {{#getPostsByTags (concatenate "count=" @config.custom.heroTagsAmount "&tag_as=id" "&tags=" @config.custom.heroTagsIndicator "&excluded=" @config.custom.heroTagsExcluded "&offset="  "&orderby=modifiedAt" "&ordering=" @config.custom.heroTagsOrdering)}}
+                 {{> hero/slider/content}}
+               {{/getPostsByTags}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.heroSource '==' "posts" }}
+               {{#getPosts (concatenate @config.custom.heroPosts) "" ""}}
+                  {{> hero/slider/content}}
+               {{/getPosts}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.heroSource '==' "pages" }}
+               {{#getPages (concatenate @config.custom.heroPages) "" ""}}
+                 {{> hero/slider/content}}
+               {{/getPages}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.heroSource '==' "custom" }}
+               {{#each @config.custom.heroContentRepeater}}
+                  {{> hero/slider/custom}}
+               {{/each}}
+            {{/checkIf}}
+         </div>
+      </div>
+
+      {{#if @config.custom.heroSliderDotNavigation}}
+         <div class="wrapper hero__slider__controls">
+            <div class="hero__slider__dots"></div>
+         </div>  
+      {{/if}} 
+   </div>
+</div>

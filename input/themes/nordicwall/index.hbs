@@ -1,0 +1,192 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main>
+   {{#checkIf @config.custom.heroType '==' "static" }}      
+      {{> hero/static/main}}
+   {{else}}
+      {{> hero/slider/main}}
+   {{/checkIf}}
+
+   {{#if @config.custom.featuresEnabled}}
+      <section class="section features">
+         <div class="wrapper{{#if @config.custom.featuresSectionIntro}} grid md:gap-6 md:grid-cols-2{{/if}}">
+            {{#if @config.custom.featuresSectionTitle}}
+               <header class="section__header about__header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+                  <h2 class="section__title">{{@config.custom.featuresSectionTitle}}</h2>
+               </header>
+            {{/if}}
+
+            {{#if @config.custom.featuresSectionIntro}}
+               <div class="features__content grid md:gap-6 
+                  {{#checkIf @config.custom.featuresSectionIntroGrid '==' "col-1"}} md:grid-cols-1 {{else}} md:grid-cols-2 {{/checkIf}}{{#if @config.custom.animation}} anim-hidden{{/if}}">
+                  {{{@config.custom.featuresSectionIntro}}}
+               </div>
+            {{/if}}
+         </div>
+
+         <div class="section__content grid grid gap-6 
+            {{#checkIf @config.custom.featuresGridLayout '==' "default"}} 
+               md:grid-cols-2
+            {{/checkIf}} 
+            {{#checkIf @config.custom.featuresGridLayout '==' "reverse" }} 
+               md:grid-cols-2
+            {{/checkIf}} 
+            {{#checkIf @config.custom.featuresGridLayout '==' "full" }} 
+               md:grid-cols-1
+            {{/checkIf}} 
+            {{#checkIf @config.custom.featuresGridLayout '==' "all-half" }} 
+               md:grid-cols-2
+            {{/checkIf}}">
+
+            {{#checkIf @config.custom.featuresContentSource '==' "tags" }}
+               {{#getPostsByTags (concatenate "count=" @config.custom.featuresTagsAmount "&tag_as=id" "&tags=" @config.custom.featuresTagsIndicator "&excluded=" @config.custom.featuresTagsExcluded "&offset="  "&orderby=modifiedAt" "&ordering=" @config.custom.featuresTagsOrdering)}}
+                  {{> content/posts-listing-project layout=@config.custom.featuresGridLayout }}
+
+               {{/getPostsByTags}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.featuresContentSource '==' "posts" }}
+               {{#getPosts (concatenate @config.custom.featuresPosts) "" ""}}
+                  {{> content/posts-listing-project layout=@config.custom.featuresGridLayout }}
+               {{/getPosts}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.featuresContentSource '==' "pages" }}
+               {{#getPages (concatenate @config.custom.featuresPages) "" ""}}
+                  {{> content/posts-listing-project layout=@config.custom.featuresGridLayout }}
+               {{/getPages}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.featuresContentSource '==' "custom"}}
+               {{#each @config.custom.featuresCustomContent as |item i|}}
+                  {{> content/posts-listing-projects-for-repeater data=item index=i layout=@config.custom.featuresGridLayout}}
+               {{/each}}
+            {{/checkIf}}
+         </div>
+      </section>
+   {{/if}}
+
+   {{#if @config.custom.features2Enabled}}
+      <section class="section features">
+         <div class="wrapper{{#if @config.custom.features2SectionIntro}} grid md:gap-6 md:grid-cols-2{{/if}}">
+            {{#if @config.custom.features2SectionTitle}}
+               <header class="section__header about__header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+                  <h2 class="section__title">{{@config.custom.features2SectionTitle}}</h2>
+               </header>
+            {{/if}}
+
+            {{#if @config.custom.features2SectionIntro}}
+               <div class="features__content grid md:gap-6 
+                  {{#checkIf @config.custom.features2SectionIntroGrid '==' "col-1"}} md:grid-cols-1 {{else}} md:grid-cols-2 {{/checkIf}}{{#if @config.custom.animation}} anim-hidden{{/if}}">
+                  {{{@config.custom.features2SectionIntro}}}
+               </div>
+            {{/if}}
+         </div>
+
+         <div class="section__content grid grid gap-6 
+            {{#checkIf @config.custom.features2GridLayout '==' "default"}} 
+               md:grid-cols-2
+            {{/checkIf}} 
+            {{#checkIf @config.custom.features2GridLayout '==' "reverse" }} 
+               md:grid-cols-2
+            {{/checkIf}} 
+            {{#checkIf @config.custom.features2GridLayout '==' "full" }} 
+               md:grid-cols-1
+            {{/checkIf}} 
+            {{#checkIf @config.custom.features2GridLayout '==' "all-half" }} 
+               md:grid-cols-2
+            {{/checkIf}}">
+
+            {{#checkIf @config.custom.features2ContentSource '==' "tags" }}
+               {{#getPostsByTags (concatenate "count=" @config.custom.features2TagsAmount "&tag_as=id" "&tags=" @config.custom.features2TagsIndicator "&excluded=" @config.custom.features2TagsExcluded "&offset="  "&orderby=modifiedAt" "&ordering=" @config.custom.features2TagsOrdering)}}
+                  {{> content/posts-listing-project layout=@config.custom.features2GridLayout }}
+               {{/getPostsByTags}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.features2ContentSource '==' "posts" }}
+               {{#getPosts (concatenate @config.custom.features2Posts) "" ""}}
+                  {{> content/posts-listing-project layout=@config.custom.features2GridLayout }}
+               {{/getPosts}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.features2ContentSource '==' "pages" }}
+               {{#getPages (concatenate @config.custom.features2Pages) "" ""}}
+                  {{> content/posts-listing-project layout=@config.custom.features2GridLayout }}
+               {{/getPages}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.features2ContentSource '==' "custom"}}
+               {{#each @config.custom.features2CustomContent as |item i|}}
+                  {{> content/posts-listing-projects-for-repeater data=item index=i layout=@config.custom.features2GridLayout}}
+               {{/each}}
+            {{/checkIf}}
+         </div>
+      </section>
+   {{/if}}
+
+   {{#if @config.custom.sectionMetrics}}
+      <section id="Metrics" class="section metrics">
+         <div class="wrapper">
+            <header class="section__header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+               <h2 class="section__title">{{@config.custom.sectionMetricsTitle}}</h2>
+            </header>
+            <div class="section__content metrics__content">
+               <div class="grid gap-4 sm:gap-20 xl:gap-28 sm:grid-cols-2 metrics__grid 
+               {{#checkIf @config.custom.metricsContentGrid '==' "col-3"}} lg:grid-cols-3 {{/checkIf}} 
+               {{#checkIf @config.custom.metricsContentGrid '==' "col-4"}} lg:grid-cols-4 {{/checkIf}}">
+                  {{#each @config.custom.keyMetricsContent}}
+                        <div class="metrics__item">
+                           <h3 class="metrics__title">{{metricTitle}}</h3>
+                           <p class="metrics__description">{{metricDescription}}</p>
+                           <span class="metrics__number{{#if @config.custom.animation}} anim-hidden{{/if}}">{{metricValue}}</span>
+                        </div>
+                  {{/each}}
+               </div>
+            </div>
+         </div>
+      </section>
+   {{/if}}
+
+   {{#if @config.custom.sectionInsights}}
+      <section id="Insights" class="section insights">
+         <div class="wrapper">
+            <div class="grid md:gap-6 xs:grid-cols-2">
+               <header class="section__header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+                  <h2 class="section__title">{{@config.custom.sectionInsightsTitle}}</h2>
+               </header>
+               {{#if @config.custom.insightsSliderNavigation}}
+                  {{> insights/navigation}}
+               {{/if}}
+            </div>
+            {{> insights/slider}}
+         </div>
+      </section>
+   {{/if}}
+
+   {{#if @config.custom.sectionFaq}}
+      <section id="faq" class="section faq">
+         <div class="wrapper">
+            <div class="faq__content grid md:gap-6 lg:grid-cols-2">
+               <header class="section__header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+                  <h2 class="section__title">{{@config.custom.sectionFaqTitle}}</h2>
+               </header>
+               <ol class="faq__list grid gap-y-2 sm:gap-x-12 sm:gap-y-4 {{#checkIf @config.custom.faqItemsGrid '==' "col-2"}}md:gap-y-8 sm:grid-cols-2{{/checkIf}}" itemscope itemtype="https://schema.org/FAQPage">
+                  {{#each @config.custom.faqItems}}
+                  <li class="faq__item{{#if @config.custom.animation}} anim-hidden{{/if}}" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                     <h3 class="faq__question" itemprop="name">{{question}}</h3>
+                     <div class="faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">
+                           {{{answer}}}
+                        </div>
+                     </div>
+                  </li>
+                  {{/each}}
+               </ol>
+            </div>
+         </div>
+      </section>
+   {{/if}}
+
+</main>
+{{> layout/footer}}
+

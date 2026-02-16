@@ -1,0 +1,25 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container content-container--right page page--tags">
+   <section class="content">
+      <header class="content__header">
+         <h1 class="content__title">
+            {{ translate 'tags.tagsPageTitle' }} 
+         </h1>
+      </header>
+      <div class="content__meta">
+         {{ translate "tags.description" tagsNumber }}
+      </div>
+      <div class="content__body content__body--aligned content__body--decor">
+         <ul class="page--tags__list grid gap-6 md:gap-y-8 sm:grid-cols-2">
+            {{#each tags}}
+               <li>
+                  <h3><a href="{{url}}">{{name}}</a></h3>
+                  <p>{{ translate "tags.featuringPosts" postsNumber }}</p>
+               </li>
+            {{/each}}
+         </ul>
+      </div>
+   </section>
+</main>
+{{> layout/footer}}

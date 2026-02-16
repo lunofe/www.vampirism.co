@@ -1,0 +1,53 @@
+<div class="hero__slider__slide">
+   <div class="hero__slider__parallax">
+      <div class="hero__slider__parallax__layer">
+         {{#if heroText}}
+            <div class="hero__content {{#checkIf @config.custom.heroTitleSize '==' 'large'}}hero__content--large{{/checkIf}} {{#checkIf @config.custom.heroTitleSize '==' 'small'}}hero__content--small{{/checkIf}}">
+               {{{ heroText }}}
+
+               {{#if customButtonText}}
+                  <div class="hero__link">
+                     {{#checkIf buttonLinkType '==' 'custom'}}
+                        <a class="btn btn--white" href="{{customButtonURL}}">
+                           {{customButtonText}}
+                        </a>
+                     {{/checkIf}}
+                     {{#checkIf buttonLinkType '==' 'post'}}
+                        {{#getPost customButtonPost}}
+                           <a href="{{url}}" class="btn btn--white">
+                              {{../customButtonText}}
+                           </a>
+                        {{/getPost}}
+                     {{/checkIf}}
+                     {{#checkIf buttonLinkType '==' 'page'}}
+                        {{#getPage customButtonPage}}
+                           <a href="{{url}}" class="btn btn--white">
+                             {{../customButtonText}}
+                           </a>
+                           {{/getPage}}
+                     {{/checkIf}}
+                  </div>
+               {{/if}}
+
+               
+            </div>
+         {{/if}}
+
+         {{#if heroImage}}
+            <figure class="hero__image">
+               <img src="{{heroImage}}"
+                    {{#if @config.site.responsiveImages}}                           
+                        {{responsiveImageAttributes heroImage 'featuredImages' 'img-full'}}
+                     {{/if}}
+                     {{#checkIf @index '==' 0}}
+                        {{ lazyload "eager" }}
+                      {{else}}
+                        {{ lazyload "lazy" }}
+                      {{/checkIf}}
+                    {{imageDimensions heroImage}}
+                    alt="{{heroImageAlt}}">
+            </figure>
+         {{/if}}
+      </div>
+   </div>
+</div>

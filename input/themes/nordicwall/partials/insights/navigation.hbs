@@ -1,0 +1,14 @@
+{{#if @config.custom.insightsSliderNavigation}}
+   <div class="insights__buttons">
+      <button class="pagination__item insights__button--prev" aria-label="{{ translate 'partials.insights.next' }}" title="{{ translate 'partials.insights.next' }}" aria-controls="insights-slider">
+         <svg height="18" width="18" stroke="currentColor">
+            <use xlink:href="assets/svg/svg-map.svg#arrow-prev" />
+         </svg>
+      </button>
+      <button class="insights__button insights__button--next" aria-label="{{ translate 'partials.insights.next' }}" title="{{ translate 'partials.insights.next' }}" aria-controls="insights-slider">
+         <svg height="18" width="18">
+            <use xlink:href="assets/svg/svg-map.svg#arrow-next" />
+         </svg>
+      </button>
+   </div>
+{{/if}}

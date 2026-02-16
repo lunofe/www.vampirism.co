@@ -1,0 +1,96 @@
+@font-face {
+    font-family: "Space Grotesk";
+    font-style: normal;
+    font-weight: 300 700;
+    font-stretch: 100%;
+    src: local("Space Grotesk"), local("Space Grotesk Light"), local("SpaceGrotesk-Light"), url(../../media/files/space-grotesk-light.woff2) format("woff2");
+}
+:root {
+	--page-bg: #191A21 !important;
+    --body-font: 'Space Grotesk','Lexend',sans-serif !important;
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+
+
+/*color adjust*/
+section.hero > div > h1 {
+	color: var(--color) !important;
+}
+.btn--white {
+    color: white;
+    background: var(--color);
+}
+.post__toc {
+	background: var(--page-bg);
+    border: 3px solid var(--color);
+}
+table td {
+	border-color: var(--light);
+}
+
+/*start of page no double space*/
+body.post-template > div.site-container > main > article > div.content__meta.content__narrow {
+    display: none !important;
+}
+
+/*footer border*/
+footer {
+    margin-top: calc(var(--baseline) * 24) !important;
+	border-top: 1px solid var(--border-color);
+}
+.faq__content {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.footer__logo>img {
+	max-height: none;
+    max-width: 15ch;
+}
+.footer__bottom {
+ 	margin-top: 0 !important;
+}
+#footer div.footer__copyright p {
+	font-size: x-small;
+}
+
+/*content*/
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+	margin-top: 0;
+}
+blockquote {
+    color: var(--text-color);
+    font-size: 1rem;
+    font-weight: var(--font-weight-normal);
+	box-shadow: 0 0 calc(var(--border-radius) * 2) 0 var(--color) inset;
+    border-radius: calc(var(--border-radius) * 3);
+    padding-bottom: calc(var(--baseline) * 4);
+    margin-bottom: 0;
+    font-style: italic;
+}
+blockquote p {
+    font-family: cursive;
+}
+blockquote::after {
+	color: var(--color);
+    content: "”";
+    font-size: 3.24732rem;
+    right: calc(var(--baseline) * 4);
+    position: absolute;
+}
+
+/*forms*/
+#ban-appeal-form *, #staff-application-form * {
+    margin-top: calc(var(--baseline) * 3);
+}
+#ban-appeal-form textarea, #ban-appeal-form input, #staff-application-form textarea, #staff-application-form input, #staff-application-form textarea, #staff-application-form select {
+    display: block;
+    width: 100% !important;
+}
+.small {
+	font-size: small;
+}

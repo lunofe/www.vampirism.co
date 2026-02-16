@@ -1,0 +1,7 @@
+.m-spaces .publii-repeater-item {
+   margin-bottom: 3rem;
+}
+
+.m-spaces .publii-repeater-item:last-child {
+   margin-bottom: 0;
+}

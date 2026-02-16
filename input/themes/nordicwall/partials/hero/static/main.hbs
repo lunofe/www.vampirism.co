@@ -1,0 +1,67 @@
+{{#if @config.custom.uploadHero}}
+   <section class="hero{{#if @config.custom.animation}} anim-hidden{{/if}}">
+      {{#if @config.custom.textHero}}
+         <div class="hero__content {{#checkIf @config.custom.heroTitleSize '==' 'large'}}hero__content--large{{/checkIf}} {{#checkIf @config.custom.heroTitleSize '==' 'small'}}hero__content--small{{/checkIf}}">
+            {{{@config.custom.textHero}}}
+            {{#if @config.custom.buttonHero}}
+               {{#checkIf @config.custom.buttonHeroLinkSource '==' 'custom'}}
+                  {{#if @config.custom.buttonHeroLinkUrl}}
+                     <div class="hero__link">
+                        <a href="{{@config.custom.buttonHeroLinkUrl}}" class="btn btn--white">
+                           {{@config.custom.buttonHeroLinkName}}
+                        </a>
+                     </div>
+                  {{/if}}
+               {{/checkIf}}
+
+               {{#checkIf @config.custom.buttonHeroLinkSource '==' 'page'}}
+                  {{#getPage @config.custom.buttonHeroLinkUrlPage}}
+                     <div class="hero__link">
+                        <a href="{{url}}" class="btn btn--white">
+                           {{@config.custom.buttonHeroLinkName}}
+                        </a>
+                     </div>
+                  {{/getPage}}
+               {{/checkIf}}
+
+               {{#checkIf @config.custom.buttonHeroLinkSource '==' 'post'}}
+                  {{#getPost @config.custom.buttonHeroLinkUrlPost}}
+                     <div class="hero__link">
+                        <a href="{{url}}" class="btn btn--white">
+                           {{@config.custom.buttonHeroLinkName}}
+                        </a>
+                     </div>
+                  {{/getPost}}
+               {{/checkIf}}
+
+               {{#checkIf @config.custom.buttonHeroLinkSource '==' 'tag'}}
+                  {{#getTag @config.custom.buttonHeroLinkUrlTag}}
+                     <div class="hero__link">
+                        <a href="{{url}}"class="btn btn--white">
+                           {{@config.custom.buttonHeroLinkName}}
+                        </a>
+                     </div>
+                  {{/getTag}}
+               {{/checkIf}}
+            {{/if}}
+         </div>
+      {{/if}}
+      {{#if @config.custom.uploadHero}}
+         <figure class="hero__image">
+            <img
+               src="{{@config.custom.uploadHero}}"
+               {{#if @config.site.responsiveImages}}
+                  {{responsiveImageAttributes @config.custom.uploadHero 'featuredImages' 'img-full'}}
+               {{/if}}
+               {{ lazyload "eager" }}
+               {{imageDimensions @config.custom.uploadHero}}
+               alt="{{@config.custom.uploadHeroAlt}}">
+            {{#if @config.custom.uploadHeroCaption}}
+               <figcaption>
+                  {{@config.custom.uploadHeroCaption}}
+               </figcaption>
+            {{/if}}
+         </figure>
+      {{/if}}
+   </section>
+{{/if}}

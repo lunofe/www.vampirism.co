@@ -1,0 +1,135 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container content-container--center post">
+   {{#post}}
+      <article class="content">
+         <header class="content__header content__narrow{{#if @config.custom.animation}} anim-hidden{{/if}}">
+            <h1 class="content__title">
+               {{title}}
+            </h1>
+         </header>
+
+         {{#checkIfAny @config.post.displayTags @config.post.displayDate}}
+            <div class="content__meta content__narrow">
+               {{#if @config.post.displayTags}}
+                  <div class="content__tags">
+                     {{#if tags}}
+                        {{#each tags}}<a href="{{url}}">{{name}}</a>{{/each}}
+                     {{/if}}
+                  </div>
+               {{/if}}
+               {{#if @config.post.displayDate}}
+                  <div class="content__info content__info--left">
+                     <time datetime="{{date createdAt 'YYYY-MM-DDTHH:mm'}}" class="content__date">
+                        {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                           {{date createdAt @config.custom.formatDate}}
+                        {{else}}
+                           {{date createdAt @config.custom.formatDateCustom}}
+                        {{/checkIf}}
+                     </time>
+
+                     {{#if @config.post.displayAuthor}}
+                        {{#author}}
+                           {{ translate 'post.by' }} <a href="{{url}}" class="content__author">{{name}} </a>
+                        {{/author}}
+                     {{/if}}
+                  </div>
+               {{/if}}
+            </div>
+         {{/checkIfAny}}
+
+         {{#featuredImage}}
+            {{#if url}}
+               <figure class="content__featured-image content__featured-image--no-aspect-ratio content__narrow">
+                  <img
+                     src="{{url}}"
+                     {{#if @config.site.responsiveImages}}                           
+                        {{responsiveImageAttributes 'featuredImage' srcset.img-half sizes.img-half}}
+                     {{/if}}
+                     {{ lazyload "eager" }}
+                     height="{{height}}"
+                     width="{{width}}"
+                     alt="{{alt}}">
+                  {{#checkIfAny caption credits}}
+                     <figcaption>
+                        {{caption}}
+                        {{credits}}
+                     </figcaption>                      
+                  {{/checkIfAny}}                      
+               </figure>
+            {{/if}}
+         {{/featuredImage}}   
+
+         <div class="content__body content__body--aligned content__entry">
+            {{{text}}}            
+         </div>
+
+         {{#checkIfAny @config.post.displayLastUpdatedDate @config.post.displayShareButtons}}
+            <footer class="content__footer content__narrow">
+                  {{#if @config.post.displayLastUpdatedDate}}
+                     {{#if modifiedAt}}
+                        <div class="content__updated">
+                           {{ translate 'post.lastUpdatedDate' }}
+                           {{#checkIf @config.custom.formatDate '!=' 'custom'}}
+                              {{date modifiedAt @config.custom.formatDate}}
+                           {{else}}
+                              {{date modifiedAt @config.custom.formatDateCustom}}
+                           {{/checkIf}}
+                        </div>
+                     {{/if}}
+                  {{/if}}
+
+                  {{#if @config.post.displayShareButtons}}
+                     <div class="content__share"> 
+                        <strong>{{ translate 'post.shareOn' }}</strong>
+                        {{#checkIfAll @plugins.socialSharing @plugins.socialSharing.state}}
+                           {{{@customSocialSharing}}}
+                        {{else}}
+                           {{> components/share-buttons}}
+                        {{/checkIfAll}}   
+                     </div>       
+                  {{/if}}
+            </footer>
+         {{/checkIfAny}}
+      </article>
+
+      {{#if @customHTML.afterPost}}
+         <div class="content__narrow banner banner--after-content">
+            {{{@customHTML.afterPost}}}
+         </div>
+      {{/if}}
+
+      {{#if @config.post.displayRelatedPosts}}
+         {{#if ../relatedPosts}}
+            <div class="content__narrow related-posts">
+               <header class="section__header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+                  <h2>
+                     {{ translate 'post.relatedPosts' }}
+                  </h2>
+               </header>
+               <div class="section__content grid gap-6 gap-y-12 md:gap-y-16 
+                  {{#checkIf @config.custom.relatedPostsGridLayout '==' "1" }}
+                     sm:grid-cols-1
+                  {{/checkIf}}
+
+                  {{#checkIf @config.custom.relatedPostsGridLayout '==' "2" }}
+                     sm:grid-cols-2
+                  {{/checkIf}}{{#if @config.custom.animation}} anim-hidden{{/if}}">
+
+                  {{#each ../relatedPosts}}
+                     {{> content/posts-listing}}
+                  {{/each}}
+               </div>
+            </div>
+         {{/if}}
+      {{/if}}
+
+      {{#if @config.post.displayComments}} 
+         <div class="content__narrow comments">
+            {{{@commentsCustomCode}}}
+         </div>
+      {{/if}}
+            
+   {{/post}}
+</main>
+{{> layout/footer}}

@@ -1,0 +1,59 @@
+<header class="header{{#if @config.custom.animation}} anim-hidden{{/if}}">
+   <a class="header__logo logo" href="{{@website.url}}">
+      {{#if @website.logo}}
+         <img src="{{@website.logo}}" alt="{{@website.name}}" width="{{@website.logoSize.width}}" height="{{@website.logoSize.height}}">
+      {{else}}
+         {{@website.name}}
+      {{/if}}
+   </a>
+
+   <div class="header__content">
+      {{#if menus.mainMenu}}
+         {{> layout/menu menus.mainMenu}}
+      {{/if}}
+
+      {{#if @config.custom.searchFeature}}
+         <div class="header__search">
+            <button class="search-toggle btn--clean" aria-label="{{ translate 'search.search' }}" aria-expanded="false">
+               <svg role="presentation" focusable="false" height="18" width="18">
+                  <use xlink:href="{{@website.assetsUrl}}/svg/svg-map.svg#search"/>
+               </svg>
+            </button>
+         </div>
+      {{/if}}
+
+      {{#if @config.custom.navbarButton}}
+         <div class="header__actions">
+            {{#checkIf @config.custom.navbarButtonLinkSource '==' 'custom'}}
+               <a href="{{@config.custom.navbarButtonLinkUrl}}" class="header__btn">
+                  {{@config.custom.navbarButtonLinkName}}
+               </a>
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.navbarButtonLinkSource '==' 'page'}}
+               {{#getPage @config.custom.navbarButtonLinkUrlPage}}
+                  <a href="{{url}}" class="header__btn">
+                     {{@config.custom.navbarButtonLinkName}}
+                  </a>
+               {{/getPage}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.navbarButtonLinkSource '==' 'post'}}
+               {{#getPost @config.custom.navbarButtonLinkUrlPost}}
+                  <a href="{{url}}" class="header__btn">
+                     {{@config.custom.navbarButtonLinkName}}
+                  </a>
+               {{/getPost}}
+            {{/checkIf}}
+
+            {{#checkIf @config.custom.navbarButtonLinkSource '==' 'tag'}}
+               {{#getTag @config.custom.navbarButtonLinkUrlTag}}
+                  <a href="{{url}}" class="header__btn">
+                     {{@config.custom.navbarButtonLinkName}}
+                  </a>
+               {{/getTag}}
+            {{/checkIf}}
+         </div>
+      {{/if}}
+   </div>
+</header>  

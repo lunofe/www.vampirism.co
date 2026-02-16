@@ -1,0 +1,62 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container page page--tag">
+   {{#tag}}
+      <section class="content">
+         <header class="content__header">
+            <h1 class="content__title">
+               {{name}}
+            </h1>
+            {{#if tagViewConfig.displayDescription}} 
+               {{#if description}}
+                  <div>
+                     {{{description}}}
+                  </div>
+               {{/if}}  
+            {{/if}}         
+         </header>
+
+         {{#checkIfAny tagViewConfig.displayBrowseAllTags tagViewConfig.displayPostCounter}}
+            <div class="content__meta">
+               {{#if tagViewConfig.displayBrowseAllTags}}
+                  <div class="content__meta-link">
+                     <a href="{{@website.tagsUrl}}" class="underline">{{ translate "tag.browseAllTags"}}</a>
+                  </div>
+               {{/if}}
+
+               {{#if tagViewConfig.displayPostCounter}}
+                  <div class="content__info">
+                     {{ translate "tag.articlesTagged" postsNumber name}}
+                  </div>
+               {{/if}}
+            </div>
+         {{/checkIfAny}}
+
+         {{#if tagViewConfig.displayPostList}}
+            <div class="content__body content__body--full">
+               <div class="grid grid gap-6 
+                  {{#checkIf @config.custom.tagGridLayoutProject '==' "default"}} 
+                     md:grid-cols-2
+                  {{/checkIf}} 
+                  {{#checkIf @config.custom.tagGridLayoutProject '==' "reverse" }} 
+                     md:grid-cols-2
+                  {{/checkIf}} 
+                  {{#checkIf @config.custom.tagGridLayoutProject '==' "full" }} 
+                     md:grid-cols-1
+                  {{/checkIf}} 
+                  {{#checkIf @config.custom.tagGridLayoutProject '==' "all-half" }} 
+                     md:grid-cols-2
+                  {{/checkIf}}">
+                  
+                  {{#each ../posts}}
+                     {{> content/posts-listing-project layout=@config.custom.tagGridLayoutProject}}
+                  {{/each}}
+               </div>
+
+               {{> layout/pagination}}
+            </div>
+         {{/if}}
+      </section>
+   {{/tag}}
+</main>
+{{> layout/footer}}

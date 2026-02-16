@@ -1,0 +1,39 @@
+<article class="tile{{#if (isHalfTile @index layout)}} md:col-span-2{{/if}}{{#if @config.custom.animation}} anim-hidden{{/if}}">
+    {{#featuredImage}}
+        {{#if url}}
+            <figure class="tile__image{{#if (isHalfImage @index ../layout)}} tile__image--half{{/if}}">
+                <img
+                    src="{{url}}"
+                    {{#if @config.site.responsiveImages}}
+                        {{responsiveImageAttributes 'featuredImage' 
+                            (lookup srcset (getTileImageSizeSetName @index ../layout)) 
+                            (lookup sizes (getTileImageSizeSetName @index ../layout))}}
+                    {{/if}}
+                    {{lazyload "lazy"}}
+                    height="{{height}}"
+                    width="{{width}}"
+                    alt="{{alt}}">
+            </figure>
+        {{/if}}
+    {{/featuredImage}}
+
+    {{#if @config.custom.tilesContent}}
+        <div class="tile__body">
+            <h3 class="tile__title">
+                {{title}}
+            </h3>
+            
+            {{#if @config.custom.tilesExcerpt}}
+                <div class="tile__description">
+                    {{{ excerpt }}}
+                </div>
+            {{/if}}
+            
+            {{#if @config.custom.tilesButton}} 
+                <div class="tile__link">
+                    <a href="{{url}}" class="btn btn--white">{{ translate 'global.readMore' }}</a>
+                </div>
+            {{/if}}
+        </div>
+    {{/if}}
+</article>

@@ -1,0 +1,149 @@
+[
+    {
+        "name": "main",
+        "position": "mainMenu",
+        "items": [
+            {
+                "id": 1766313910734,
+                "label": "Rules",
+                "title": "",
+                "type": "page",
+                "target": "_self",
+                "rel": "",
+                "link": 10,
+                "cssClass": "",
+                "isHidden": false,
+                "items": []
+            },
+            {
+                "id": 1766313922032,
+                "label": "Wiki",
+                "title": "",
+                "type": "frontpage",
+                "target": "_self",
+                "rel": "",
+                "link": "empty",
+                "cssClass": "",
+                "isHidden": true,
+                "items": []
+            },
+            {
+                "id": 1766313934935,
+                "label": "More",
+                "title": "",
+                "type": "separator",
+                "target": "_self",
+                "rel": "",
+                "link": "",
+                "cssClass": "",
+                "isHidden": false,
+                "items": [
+                    {
+                        "id": 1767727757407,
+                        "label": "Join The Team",
+                        "title": "",
+                        "type": "page",
+                        "target": "_self",
+                        "rel": "",
+                        "link": 18,
+                        "cssClass": "",
+                        "isHidden": false,
+                        "items": []
+                    },
+                    {
+                        "id": 1767727744846,
+                        "label": "Request Unban",
+                        "title": "",
+                        "type": "page",
+                        "target": "_self",
+                        "rel": "",
+                        "link": 17,
+                        "cssClass": "",
+                        "isHidden": false,
+                        "items": []
+                    },
+                    {
+                        "id": 1770667841158,
+                        "label": "Statistics",
+                        "title": "",
+                        "type": "page",
+                        "target": "_self",
+                        "rel": "",
+                        "link": 20,
+                        "cssClass": "",
+                        "isHidden": false,
+                        "items": []
+                    },
+                    {
+                        "id": 1767727770066,
+                        "label": "World Download",
+                        "title": "",
+                        "type": "page",
+                        "target": "_self",
+                        "rel": "",
+                        "link": 15,
+                        "cssClass": "",
+                        "isHidden": false,
+                        "items": []
+                    }
+                ]
+            }
+        ],
+        "maxLevels": "-1"
+    },
+    {
+        "name": "footer",
+        "position": "footerMenu",
+        "items": [
+            {
+                "id": 1767727679260,
+                "label": "Contact",
+                "title": "",
+                "type": "external",
+                "target": "_self",
+                "rel": "",
+                "link": "mailto:hello@vampirism.co",
+                "cssClass": "",
+                "isHidden": false,
+                "items": []
+            },
+            {
+                "id": 1767726687547,
+                "label": "Privacy",
+                "title": "",
+                "type": "page",
+                "target": "_self",
+                "rel": "",
+                "link": 19,
+                "cssClass": "",
+                "isHidden": false,
+                "items": []
+            },
+            {
+                "id": 1767726699521,
+                "label": "Licensing",
+                "title": "",
+                "type": "page",
+                "target": "_self",
+                "rel": "",
+                "link": 14,
+                "cssClass": "",
+                "isHidden": false,
+                "items": []
+            },
+            {
+                "id": 1771274226184,
+                "label": "GitHub",
+                "title": "",
+                "type": "external",
+                "target": "_self",
+                "rel": "",
+                "link": "https://github.com/lunofe/www.vampirism.co",
+                "cssClass": "",
+                "isHidden": false,
+                "items": []
+            }
+        ],
+        "maxLevels": "1"
+    }
+]

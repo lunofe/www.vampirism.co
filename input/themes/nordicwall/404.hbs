@@ -1,0 +1,19 @@
+{{> layout/head}}
+{{> layout/navbar}}
+<main class="main content-container page page--error">
+   <section class="content">
+      <header class="content__header">
+         <h1 class="content__title">
+            {{ translate 'error.404' }}
+         </h1>
+            <p>{{ translate 'error.message' }}</p>       
+      </header>
+
+      <div class="content__meta">
+         <div class="content__meta-link">
+            <a href="{{@website.url}}" class="underline">{{ translate 'error.button' }}</a>
+         </div>
+      </div>
+   </section>
+</main>
+{{> layout/footer}}
