@@ -9,7 +9,7 @@
 
 # redirect old file folder
 /files/modpack_menu.php /api/track 301
-/files /media/files
+/files/* /media/files/:splat 301
 
 # fun things
 /store https://www.youtube.com/watch?v=dQw4w9WgXcQ 301
