@@ -11,6 +11,7 @@
 /staff-applications/ /join-the-team 301
 /sunsetting-technic-launcher /post/sunsetting-technic-launcher 301
 /sunsetting-technic-launcher/ /post/sunsetting-technic-launcher 301
+/looking-back-at-* /post/looking-back-at-:splat 301
 
 # redirect old file folder
 /files/modpack_menu.php /api/track 301
