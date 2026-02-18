@@ -8,7 +8,7 @@
         "color": 1,
         "icon": "web-moon"
     },
-    "domain": "/",
+    "domain": "https://vampirism.co",
     "language": "en-gb",
     "spellchecking": false,
     "advanced": {
@@ -22,18 +22,18 @@
         "responsiveImages": true,
         "mediaLazyLoad": 1,
         "versionSuffix": false,
-        "sitemapEnabled": true,
+        "sitemapEnabled": false,
         "sitemapAddTags": false,
         "sitemapAddAuthors": false,
         "sitemapAddHomepage": 1,
         "sitemapAddExternalImages": 0,
         "sitemapExcludedFiles": "",
-        "usePageTitleInsteadItemName": false,
+        "usePageTitleInsteadItemName": true,
         "openGraphEnabled": 1,
-        "openGraphImage": "",
+        "openGraphImage": "banner_castle.png",
         "openGraphAppId": "",
         "twitterCardsEnabled": 1,
-        "twitterCardsType": "summary",
+        "twitterCardsType": "summary_large_image",
         "twitterUsername": "",
         "metaTitle": "%sitename",
         "metaDescription": "",
@@ -88,8 +88,8 @@
             "showFullText": 1,
             "numberOfPosts": 10,
             "showFeaturedImage": 1,
-            "enableRss": 1,
-            "enableJson": 1,
+            "enableRss": false,
+            "enableJson": false,
             "updatedDateType": "createdAt",
             "showOnlyFeatured": 0,
             "excludeFeatured": 0
@@ -180,11 +180,11 @@
     },
     "deployment": {
         "protocol": "manual",
-        "relativeUrls": true,
+        "relativeUrls": false,
         "port": "",
         "server": "",
         "username": "",
-        "password": "",
+        "password": "publii uuid-1766232030566-443316498",
         "askforpassword": false,
         "rejectUnauthorized": true,
         "path": "",
@@ -194,8 +194,8 @@
             "customProvider": false,
             "provider": "aws",
             "endpoint": "",
-            "id": "",
-            "key": "",
+            "id": "publii-s3-id uuid-1766232030566-443316498",
+            "key": "publii-s3-key uuid-1766232030566-443316498",
             "bucket": "",
             "region": "",
             "customRegion": "",
@@ -208,7 +208,7 @@
             "url": "",
             "branch": "",
             "user": "",
-            "password": "",
+            "password": "publii-git-password uuid-1766232030566-443316498",
             "commitAuthor": "",
             "commitEmail": "",
             "commitMessage": "Publii: update content"
@@ -218,7 +218,7 @@
             "user": "",
             "repo": "",
             "branch": "",
-            "token": "",
+            "token": "publii-gh-token uuid-1766232030566-443316498",
             "parallelOperations": 1,
             "apiRateLimiting": 1
         },
@@ -227,11 +227,11 @@
             "rejectUnauthorized": true,
             "repo": "",
             "branch": "",
-            "token": ""
+            "token": "publii-gl-token uuid-1766232030566-443316498"
         },
         "netlify": {
-            "id": "",
-            "token": ""
+            "id": "publii-netlify-id uuid-1766232030566-443316498",
+            "token": "publii-netlify-token uuid-1766232030566-443316498"
         },
         "google": {
             "key": "",
