@@ -30,7 +30,7 @@ table td {
 	border-color: var(--light);
 }
 
-/*start of page no double space*/
+/*start of posts no double space*/
 body.post-template > div.site-container > main > article > div.content__meta.content__narrow {
     display: none !important;
 }
@@ -81,6 +81,10 @@ blockquote::after {
     font-size: 3.24732rem;
     right: calc(var(--baseline) * 4);
     position: absolute;
+}
+code {
+	padding: 0.5ch;
+	border-radius: var(--border-radius);
 }
 
 /*forms*/
