@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Statistics - Vampirism.co</title><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://vampirism.co/statistics/"><meta property="og:title" content="Statistics - Vampirism.co "><meta property="og:image" content="https://vampirism.co/media/posts/20/fz56gzh674rugj67rgh67j.webp"><meta property="og:image:width" content="1854"><meta property="og:image:height" content="1011"><meta property="og:site_name" content="Vampirism.co"><meta property="og:description" content=""><meta property="og:url" content="https://vampirism.co/statistics/"><meta property="og:type" content="article"><link rel="shortcut icon" href="https://vampirism.co/media/website/icon.png" type="image/png"><link rel="preload" href="https://vampirism.co/assets/dynamic/fonts/lexend/lexend.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="https://vampirism.co/assets/css/style.css"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vampirism.co/statistics/"},"headline":"Statistics","datePublished":"2026-02-08T22:23+01:00","dateModified":"2026-02-18T18:11+01:00","image":{"@type":"ImageObject","url":"https://vampirism.co/media/posts/20/fz56gzh674rugj67rgh67j.webp","height":1011,"width":1854},"description":"","author":{"@type":"Person","name":"Vampirism.co","url":"https://vampirism.co/author/vampirismco/"},"publisher":{"@type":"Organization","name":"Vampirism.co","logo":{"@type":"ImageObject","url":"https://vampirism.co/media/website/banner_bat.png","height":720,"width":2160}}}</script><style>.anim-hidden {
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Statistics - Vampirism.co</title><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://vampirism.co/statistics/"><meta property="og:title" content="Statistics - Vampirism.co "><meta property="og:image" content="https://vampirism.co/media/posts/20/fz56gzh674rugj67rgh67j.webp"><meta property="og:image:width" content="1854"><meta property="og:image:height" content="1011"><meta property="og:site_name" content="Vampirism.co"><meta property="og:description" content=""><meta property="og:url" content="https://vampirism.co/statistics/"><meta property="og:type" content="article"><link rel="shortcut icon" href="https://vampirism.co/media/website/icon.png" type="image/png"><link rel="preload" href="https://vampirism.co/assets/dynamic/fonts/lexend/lexend.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="https://vampirism.co/assets/css/style.css"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vampirism.co/statistics/"},"headline":"Statistics","datePublished":"2026-02-08T22:23+01:00","dateModified":"2026-03-12T19:19+01:00","image":{"@type":"ImageObject","url":"https://vampirism.co/media/posts/20/fz56gzh674rugj67rgh67j.webp","height":1011,"width":1854},"description":"","author":{"@type":"Person","name":"Vampirism.co","url":"https://vampirism.co/author/vampirismco/"},"publisher":{"@type":"Organization","name":"Vampirism.co","logo":{"@type":"ImageObject","url":"https://vampirism.co/media/website/banner_bat.png","height":720,"width":2160}}}</script><style>.anim-hidden {
                     visibility: hidden;
                 }
                 .post__image--full,
@@ -47,17 +47,21 @@
 			return `#${[r, g, b].map(x => x.toString(16).padStart(2, '0')).join('')}`;
 		}
 
-		// Get start of week (Sunday)
+		// Get start of week (Monday), based on calendar date only (timezone-agnostic)
 		function getWeekStart(date) {
-			const weekStart = new Date(date);
-			weekStart.setDate(weekStart.getDate() - weekStart.getDay());
-			weekStart.setHours(0, 0, 0, 0);
+			const weekStart = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+			const dayOffset = (weekStart.getUTCDay() + 6) % 7; // Monday = 0, Sunday = 6
+			weekStart.setUTCDate(weekStart.getUTCDate() - dayOffset);
 			return weekStart;
 		}
 
 		// Get current week key for filtering
 		function getCurrentWeekKey() {
-			return getWeekStart(new Date()).toISOString().split('T')[0];
+			const weekStart = getWeekStart(new Date());
+			const year = weekStart.getUTCFullYear();
+			const month = String(weekStart.getUTCMonth() + 1).padStart(2, '0');
+			const day = String(weekStart.getUTCDate()).padStart(2, '0');
+			return `${year}-${month}-${day}`;
 		}
 
 		// Sort versions semantically
@@ -147,7 +151,8 @@
 			// Group data by week, counting each launcher+version combo
 			const weekMap = new Map();
 			data.forEach(entry => {
-				const weekKey = getWeekStart(entry.date).toISOString().split('T')[0];
+				const weekStart = getWeekStart(entry.date);
+				const weekKey = `${weekStart.getUTCFullYear()}-${String(weekStart.getUTCMonth() + 1).padStart(2, '0')}-${String(weekStart.getUTCDate()).padStart(2, '0')}`;
 				const launcher = entry.launcher.toLowerCase();
 				const version = entry.version;
 				const comboKey = `${launcher}|${version}`;
