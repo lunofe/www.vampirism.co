@@ -10,7 +10,7 @@
     },
     "domain": "https://vampirism.co",
     "language": "en-gb",
-    "spellchecking": false,
+    "spellchecking": true,
     "advanced": {
         "cssCompression": 1,
         "htmlCompression": 1,
