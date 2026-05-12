@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Request Unban - Vampirism.co</title><meta name="description" content="Do you understand what this form is for? This system exists for two reasons: We do not shorten temporary bans. If you think your ban&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://vampirism.co/request-unban/"><meta property="og:title" content="Request Unban - Vampirism.co "><meta property="og:image" content="https://vampirism.co/media/posts/17/rf4e3tg45rtzg5rtg45rtgz4.webp"><meta property="og:image:width" content="1854"><meta property="og:image:height" content="1011"><meta property="og:site_name" content="Vampirism.co"><meta property="og:description" content="Do you understand what this form is for? This system exists for two reasons: We do not shorten temporary bans. If you think your ban&hellip;"><meta property="og:url" content="https://vampirism.co/request-unban/"><meta property="og:type" content="article"><link rel="shortcut icon" href="https://vampirism.co/media/website/icon.png" type="image/png"><link rel="preload" href="https://vampirism.co/assets/dynamic/fonts/lexend/lexend.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="https://vampirism.co/assets/css/style.css"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vampirism.co/request-unban/"},"headline":"Request Unban","datePublished":"2026-01-06T18:54+01:00","dateModified":"2026-05-12T18:41+02:00","image":{"@type":"ImageObject","url":"https://vampirism.co/media/posts/17/rf4e3tg45rtzg5rtg45rtgz4.webp","height":1011,"width":1854},"description":"Do you understand what this form is for? This system exists for two reasons: We do not shorten temporary bans. If you think your ban&hellip;","author":{"@type":"Person","name":"Vampirism.co","url":"https://vampirism.co/author/vampirismco/"},"publisher":{"@type":"Organization","name":"Vampirism.co","logo":{"@type":"ImageObject","url":"https://vampirism.co/media/website/banner_bat.png","height":720,"width":2160}}}</script><style>.anim-hidden {
+<!DOCTYPE html><html lang="en-gb"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Request Unban - Vampirism.co</title><meta name="description" content="Do you understand what this form is for? This system exists for two reasons: We do not shorten temporary bans. If you think your ban&hellip;"><meta name="generator" content="Publii Open-Source CMS for Static Site"><link rel="canonical" href="https://vampirism.co/request-unban/"><meta property="og:title" content="Request Unban - Vampirism.co "><meta property="og:image" content="https://vampirism.co/media/posts/17/rf4e3tg45rtzg5rtg45rtgz4.webp"><meta property="og:image:width" content="1854"><meta property="og:image:height" content="1011"><meta property="og:site_name" content="Vampirism.co"><meta property="og:description" content="Do you understand what this form is for? This system exists for two reasons: We do not shorten temporary bans. If you think your ban&hellip;"><meta property="og:url" content="https://vampirism.co/request-unban/"><meta property="og:type" content="article"><link rel="shortcut icon" href="https://vampirism.co/media/website/icon.png" type="image/png"><link rel="preload" href="https://vampirism.co/assets/dynamic/fonts/lexend/lexend.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="https://vampirism.co/assets/css/style.css"><script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https://vampirism.co/request-unban/"},"headline":"Request Unban","datePublished":"2026-01-06T18:54+01:00","dateModified":"2026-05-12T18:58+02:00","image":{"@type":"ImageObject","url":"https://vampirism.co/media/posts/17/rf4e3tg45rtzg5rtg45rtgz4.webp","height":1011,"width":1854},"description":"Do you understand what this form is for? This system exists for two reasons: We do not shorten temporary bans. If you think your ban&hellip;","author":{"@type":"Person","name":"Vampirism.co","url":"https://vampirism.co/author/vampirismco/"},"publisher":{"@type":"Organization","name":"Vampirism.co","logo":{"@type":"ImageObject","url":"https://vampirism.co/media/website/banner_bat.png","height":720,"width":2160}}}</script><style>.anim-hidden {
                     visibility: hidden;
                 }
                 .post__image--full,
@@ -54,20 +54,78 @@
 
 		startCountdown();
 
+		const FORM_DELAY = 300;
+		let formTimeRemaining = FORM_DELAY;
+		let submitCountdownInterval = null;
+
+		let xrayRescreenCompleted = false;
+		let xrayRescreenMode = false;
+		const xrayRescreenSteps = [3, 5];
+		let xrayRescreenIndex = 0;
+
+		function containsXray(text) {
+			return /x[\s-]?ray/i.test(text);
+		}
+
 		nextBtn.addEventListener("click", () => {
-			steps[currentStep].style.display = "none";
-			currentStep++;
-			if (currentStep < TOTAL_STEPS) {
-				steps[currentStep].style.display = "";
-				startCountdown();
+			if (xrayRescreenMode) {
+				steps[xrayRescreenSteps[xrayRescreenIndex]].style.display = "none";
+				xrayRescreenIndex++;
+				if (xrayRescreenIndex < xrayRescreenSteps.length) {
+					steps[xrayRescreenSteps[xrayRescreenIndex]].style.display = "";
+					startCountdown();
+				} else {
+					prescreeningWrapper.style.display = "none";
+					formWrapper.style.display = "";
+					xrayRescreenCompleted = true;
+					xrayRescreenMode = false;
+					if (formTimeRemaining <= 0) {
+						submitBtn.textContent = "Accept & Submit Form";
+						submitBtn.disabled = false;
+					}
+				}
 			} else {
-				prescreeningWrapper.style.display = "none";
-				formWrapper.style.display = "";
+				steps[currentStep].style.display = "none";
+				currentStep++;
+				if (currentStep < TOTAL_STEPS) {
+					steps[currentStep].style.display = "";
+					startCountdown();
+				} else {
+					prescreeningWrapper.style.display = "none";
+					formWrapper.style.display = "";
+					startSubmitCountdown();
+				}
 			}
 		});
 
 		// Ban appeal form handler
 		const banForm = document.getElementById("ban-appeal-form");
+		const submitBtn = banForm.querySelector('button[type="submit"]');
+		submitBtn.disabled = true;
+
+		function startSubmitCountdown() {
+			formTimeRemaining = FORM_DELAY;
+			updateSubmitBtn();
+			submitCountdownInterval = setInterval(() => {
+				formTimeRemaining--;
+				if (formTimeRemaining <= 0) {
+					clearInterval(submitCountdownInterval);
+					submitCountdownInterval = null;
+					submitBtn.textContent = "Accept & Submit Form";
+					submitBtn.disabled = false;
+				} else {
+					updateSubmitBtn();
+				}
+			}, 1000);
+		}
+
+		function updateSubmitBtn() {
+			const min = Math.floor(formTimeRemaining / 60);
+			const sec = formTimeRemaining % 60;
+			submitBtn.textContent = `Take your time. ${min}:${sec.toString().padStart(2, '0')} remaining...`;
+			submitBtn.disabled = true;
+		}
+
 		const characterCounter = document.getElementById("character-counter");
 		const longTextFields = ["why_banned", "why_unban"];
 
@@ -98,6 +156,22 @@
 			if (!updateCharacterCount()) {
 				alert("The total characters in the long text fields exceeds 1700. Please reduce the text length.");
 				return;
+			}
+
+			// X-ray rescreen check
+			if (!xrayRescreenCompleted) {
+				const whyBanned = banForm.querySelector('[name="why_banned"]').value;
+				const whyUnban = banForm.querySelector('[name="why_unban"]').value;
+				if (containsXray(whyBanned) || containsXray(whyUnban)) {
+					xrayRescreenMode = true;
+					xrayRescreenIndex = 0;
+					formWrapper.style.display = "none";
+					prescreeningWrapper.style.display = "";
+					steps.forEach(s => s.style.display = "none");
+					steps[xrayRescreenSteps[0]].style.display = "";
+					startCountdown();
+					return;
+				}
 			}
 
 			const form = e.target;
@@ -143,7 +217,7 @@
 					},
 					body: JSON.stringify(banData)
 				});
-        		if (!res.ok) throw new Error();
+				if (!res.ok) throw new Error();
 				alert("Ban appeal submitted successfully!");
 				window.location.href = "https://vampirism.co";
 			} catch (err) {
