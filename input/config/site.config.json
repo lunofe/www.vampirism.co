@@ -184,7 +184,7 @@
         "port": "",
         "server": "",
         "username": "",
-        "password": "publii uuid-1766232030566-443316498",
+        "password": "",
         "askforpassword": false,
         "rejectUnauthorized": true,
         "path": "",
@@ -194,8 +194,8 @@
             "customProvider": false,
             "provider": "aws",
             "endpoint": "",
-            "id": "publii-s3-id uuid-1766232030566-443316498",
-            "key": "publii-s3-key uuid-1766232030566-443316498",
+            "id": "",
+            "key": "",
             "bucket": "",
             "region": "",
             "customRegion": "",
@@ -208,7 +208,7 @@
             "url": "",
             "branch": "",
             "user": "",
-            "password": "publii-git-password uuid-1766232030566-443316498",
+            "password": "",
             "commitAuthor": "",
             "commitEmail": "",
             "commitMessage": "Publii: update content"
@@ -218,7 +218,7 @@
             "user": "",
             "repo": "",
             "branch": "",
-            "token": "publii-gh-token uuid-1766232030566-443316498",
+            "token": "",
             "parallelOperations": 1,
             "apiRateLimiting": 1
         },
@@ -227,11 +227,11 @@
             "rejectUnauthorized": true,
             "repo": "",
             "branch": "",
-            "token": "publii-gl-token uuid-1766232030566-443316498"
+            "token": ""
         },
         "netlify": {
-            "id": "publii-netlify-id uuid-1766232030566-443316498",
-            "token": "publii-netlify-token uuid-1766232030566-443316498"
+            "id": "",
+            "token": ""
         },
         "google": {
             "key": "",
@@ -240,9 +240,10 @@
         },
         "manual": {
             "output": "catalog",
-            "outputDirectory": "/run/user/1000/doc/5f5f1eba/Desktop"
-        }
+            "outputDirectory": "/run/user/1000/doc/fJF4vSJHjNd1E_qo2jDbmA/Desktop"
+        },
+        "cachedDomain": ""
     },
     "theme": "nordicwall",
-    "syncDate": 1767730272170
+    "syncDate": 1791916474799
 }
